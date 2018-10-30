@@ -1,14 +1,17 @@
 import acm.graphics.GRect;
 import acm.program.GraphicsProgram;
+/* Task: draw a pyramid.
+By: Yana Krukovska.
+PyramidDrawer.java
+ */
 
-//TODO add comments
-public class Task1_pyramid extends GraphicsProgram {
+public class PyramidDrawer extends GraphicsProgram {
 
-    private static final int BRICK_WIDTH = 30;
-    private static final int BRICK_HEIGHT = 12;
-    private static final int BRICKS_IN_BASE = 14;
-    private static final int WORLD_WIDTH = 300;
-    private static final int WORLD_HEIGHT = 200;
+    private static final int BRICK_WIDTH = 100;
+    private static final int BRICK_HEIGHT = 50;
+    private static final int BRICKS_IN_BASE = 10;
+    private static final int WORLD_WIDTH = 800;
+    private static final int WORLD_HEIGHT = 600;
 
     public void run() {
         this.setSize(WORLD_WIDTH, WORLD_HEIGHT);

@@ -1,9 +1,18 @@
 import acm.program.ConsoleProgram;
 
-public class Lab1_math extends ConsoleProgram {
+import java.awt.*;
+
+/* Task: create program which has three methods that solve three different math tasks.
+Made by: Yana Krukovska.
+Lab1MathTasks.java */
+
+public class Lab1MathTasks extends ConsoleProgram {
     private static final int END_OF_INSERTING = 0;
 
     public void run() {
+
+        Font f1 = new Font("Times New Roman", Font.PLAIN,15);
+        this.setFont(f1);
 
         int userAnswer;
         do {
@@ -13,6 +22,7 @@ public class Lab1_math extends ConsoleProgram {
             println("3.Getting number one");
             println("Insert 0 to exit");
             userAnswer = readInt("?:");
+
 
             if (userAnswer == 1) {
                 startPythagoreanTheorem();
@@ -26,7 +36,7 @@ public class Lab1_math extends ConsoleProgram {
         println("Application has been stopped.");
     }
 
-
+    // Method which does two types of actions to turn user's input into 1
     private void startGettingNumberOne() {
         int userAnswer;
         do {
@@ -67,6 +77,7 @@ public class Lab1_math extends ConsoleProgram {
         return amountOfSteps;
     }
 
+    // Method which finds the biggest and the smallest numbers among those which were inserted by user.
     private void startFindingMaxAndMin() {
         int userAnswer;
         do {
@@ -107,7 +118,7 @@ public class Lab1_math extends ConsoleProgram {
 
     }
 
-
+    // Method which calculates c from Pythagorean theorem after the user inserts a and b.
     private void startPythagoreanTheorem() {
         int userAnswer;
         do {
@@ -124,8 +135,8 @@ public class Lab1_math extends ConsoleProgram {
                 println("Wrong number. It has to be bigger than 0.");
                 readDouble("b:");
             }
-
-            println("c = " + Math.pow(Math.pow(a, 2) + Math.pow(b, 2), 0.5));
+          double  pythagor = Math.pow((Math.pow(a, 2) + Math.pow(b, 2)), 0.5);
+            println("c = " + pythagor );
             println("Press 1 to repeat. Insert any number to return to the list of tasks");
             userAnswer = readInt("");
         } while (userAnswer == 1);
