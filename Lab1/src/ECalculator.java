@@ -4,45 +4,75 @@ public class ECalculator {
     private static final double EP = 0.0000000000001;
 
     public static void main(String[] args) {
+        testRecurrentCalculation();
+        testRecursiveCalculation();
+
+        System.out.println("Math.exp(X) = " + Math.exp(X));
+
+    }
+
+    private static void testRecurrentCalculation() {
+        double sn1;
+        double sn0;
+
+        int n = 3;
+        do {
+            sn1 =  calculateSeriesRecurrent(n);
+            sn0 =  calculateSeriesRecurrent(n - 1);
+
+            n++;
+        } while (Math.abs(sn1 - sn0) > EP);
+        System.out.printf("Recurren calculation: precision = %20.19f, value = %20.19f, n = %d ", EP, sn1, (n - 2));
+        System.out.println();
+    }
+
+    //test recursive calculation
+    private static void testRecursiveCalculation() {
         double sn1;
         double sn0;
         int n = 3;
         do {
-            sn1 = 1 + X + calculateSeries(n);
-
-            sn0 = 1 + X + calculateSeries(n - 1);
-            // System.out.println("sn1 = " + sn1);
-            // System.out.println("sn0 = " + sn0);
+            sn1 = calculateRecursive(n);
+            sn0 = calculateRecursive(n - 1);
             n++;
         } while (Math.abs(sn1 - sn0) > EP);
-        System.out.println("final result is " + sn1 + "steps = " + (n - 2) + "check = " + Math.exp(X));
-
+        System.out.printf("Recursive calculation: precision = %20.19f, value = %20.19f, n = %d  ", EP, sn1, (n - 2));
+        System.out.println();
 
     }
 
-    private static double calculateSeries(int n) {
+    private static double calculateSeriesRecurrent(int n) {
         double result = 0;
-        for (int i = 2; i <= n; i++) {
-            result = result + Math.pow(X, i) / countFactorial(i);
+        for (int i = 0; i <= n; i++) {
+            result = result +calculateSeriesMember(i);
         }
         return result;
     }
 
-
-    private static long countFactorial(int n) {
-        if (n == 0 || n == 1) {
+    //Calculate series recursive
+    public static double calculateRecursive(int n) {
+        double result = 0;
+        if (n == 0) {//recursion exit condition
             return 1;
         }
-        return n * countFactorial(n - 1);
+        result += calculateSeriesMember(n) + calculateRecursive(n - 1);
+
+        return result;
     }
 
-    private static long countFactorialLoop(int n) {
-        long factorial = 1;
-        for (int i = n; i >= 1; i--) {
-            factorial = i * factorial;
+    //calculates n-member of series
+    private static double calculateSeriesMember(int n) {
+        return Math.pow(X, n) / factorial(n);
 
+    }
+
+    private static long factorial(int n) {
+        if (n == 0 || n == 1) { //recursion exit condition
+            return 1;
         }
-        return factorial;
-
+        return n * factorial(n - 1);
     }
+
+
+
 }
