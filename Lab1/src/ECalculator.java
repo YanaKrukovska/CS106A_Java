@@ -1,13 +1,25 @@
-public class ECalculator {
+import acm.program.ConsoleProgram;
 
-    private static final double X = 0.5;
-    private static final double EP = 0.0000000000001;
+public class ECalculator extends ConsoleProgram {
 
-    public static void main(String[] args) {
+    private static double X;
+    private static double EP;
+
+    public void run() {
+
+        EP = readDouble("EP = ");
+
+        do {
+            X = readDouble("X = ");
+            if (X < 0 || X > 1) {
+                println("Wrong number! It should be 0 =< X < 1");
+            }
+        } while (!(X >= 0 && X < 1));
+
         testRecurrentCalculation();
         testRecursiveCalculation();
 
-        System.out.println("Math.exp(X) = " + Math.exp(X));
+        println("Math.exp(X) = " + Math.exp(X));
 
     }
 
@@ -17,13 +29,12 @@ public class ECalculator {
 
         int n = 3;
         do {
-            sn1 =  calculateSeriesRecurrent(n);
-            sn0 =  calculateSeriesRecurrent(n - 1);
+            sn1 = calculateSeriesRecurrent(n);
+            sn0 = calculateSeriesRecurrent(n - 1);
 
             n++;
         } while (Math.abs(sn1 - sn0) > EP);
-        System.out.printf("Recurren calculation: precision = %20.19f, value = %20.19f, n = %d ", EP, sn1, (n - 2));
-        System.out.println();
+
     }
 
     //test recursive calculation
@@ -36,15 +47,14 @@ public class ECalculator {
             sn0 = calculateRecursive(n - 1);
             n++;
         } while (Math.abs(sn1 - sn0) > EP);
-        System.out.printf("Recursive calculation: precision = %20.19f, value = %20.19f, n = %d  ", EP, sn1, (n - 2));
-        System.out.println();
+
 
     }
 
     private static double calculateSeriesRecurrent(int n) {
         double result = 0;
         for (int i = 0; i <= n; i++) {
-            result = result +calculateSeriesMember(i);
+            result = result + calculateSeriesMember(i);
         }
         return result;
     }
@@ -72,7 +82,6 @@ public class ECalculator {
         }
         return n * factorial(n - 1);
     }
-
 
 
 }
