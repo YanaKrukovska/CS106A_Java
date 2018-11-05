@@ -26,17 +26,15 @@ public class GuessTheNumber extends ConsoleProgram {
         int userGuess;
         int amountOfAttempts = 0;
         do {
-            userGuess = readInt("your guess:");
+            userGuess = readInt("your guess: ");
             if (userGuess < randomNumber) {
                 println("It's bigger!");
             } else if (userGuess > randomNumber) {
                 println("It's smaller!");
-            } else {
-                println("Correct!");
             }
             amountOfAttempts++;
         } while (userGuess != randomNumber);
-        println("It took user " + amountOfAttempts + " attempts to guess the number");
+        println("Correct! It is " + randomNumber + "! It took user " + amountOfAttempts + " attempts to guess the number");
     }
 
 
