@@ -1,5 +1,6 @@
 import acm.program.ConsoleProgram;
 import acm.util.RandomGenerator;
+
 import java.awt.*;
 
 public class GuessTheNumber extends ConsoleProgram {
@@ -14,15 +15,16 @@ public class GuessTheNumber extends ConsoleProgram {
         int userInput;
         do {
             int randomNumber = rgen.nextInt(0, 100);
-            userTriesToGuessTheNumber(randomNumber);
+            userTriesToGuessNumber(randomNumber);
             println("If you would like to continue, press any number. If you want to stop the program, press 0");
             userInput = readInt();
         } while (userInput != 0);
 
     }
 
-    private void userTriesToGuessTheNumber(int randomNumber) {
+    private void userTriesToGuessNumber(int randomNumber) {
         int userGuess;
+        int amountOfAttempts = 0;
         do {
             userGuess = readInt("your guess:");
             if (userGuess < randomNumber) {
@@ -32,7 +34,9 @@ public class GuessTheNumber extends ConsoleProgram {
             } else {
                 println("Correct!");
             }
+            amountOfAttempts++;
         } while (userGuess != randomNumber);
+        println("It took user " + amountOfAttempts + " attempts to guess the number");
     }
 
 
