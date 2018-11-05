@@ -14,14 +14,14 @@ public class GuessTheNumber extends ConsoleProgram {
         int userInput;
         do {
             int randomNumber = rgen.nextInt(0, 100);
-            userTriesToTheNumber(randomNumber);
+            userTriesToGuessTheNumber(randomNumber);
             println("If you would like to continue, press any number. If you want to stop the program, press 0");
             userInput = readInt();
         } while (userInput != 0);
 
     }
 
-    private void userTriesToTheNumber(int randomNumber) {
+    private void userTriesToGuessTheNumber(int randomNumber) {
         int userGuess;
         do {
             userGuess = readInt("your guess:");
