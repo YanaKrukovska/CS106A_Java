@@ -5,6 +5,11 @@ import acm.util.RandomGenerator;
 
 import java.awt.*;
 
+/* Task: create a program that makes two players roll the dice and then calculates the winner.
+Made by: Yana Krukovska
+RollDice.java
+* */
+
 public class RollDice extends ConsoleProgram {
     private RandomGenerator randomNumbers = RandomGenerator.getInstance();
 
@@ -29,7 +34,7 @@ public class RollDice extends ConsoleProgram {
                 println("How many times would you like to roll the dice? If you want to select the number of rounds now, press 1." +
                         "If you want to decide whether to continue or not after each round, press 2");
                 userAnswer = readInt("?:");
-                if (userAnswer != 1 && userAnswer != 2){
+                if (userAnswer != 1 && userAnswer != 2) {
                     println("Possible answers are 1 and 2. Choose any");
                 }
             } while (userAnswer != 1 && userAnswer != 2);
@@ -50,6 +55,7 @@ public class RollDice extends ConsoleProgram {
         } while (userInput != 0);
     }
 
+    // Rolls the dice and asks the players if they want to continue or not.
     private int RollDiceOneTime() {
         int userAnswer;
         do {
@@ -66,6 +72,7 @@ public class RollDice extends ConsoleProgram {
         return userAnswer;
     }
 
+    // Rolls the dice as many time as players said before the game started.
     private void RollDiceCertainAmountOfTimes() {
         do {
             amountOfRounds = readInt("Amount of rounds: ");
@@ -77,6 +84,7 @@ public class RollDice extends ConsoleProgram {
         }
     }
 
+    // Asks user to insert amount of dice and sides.
     private void askUserInput() {
         do {
             amountOfDice = readInt("Amount of dice: ");
@@ -92,7 +100,7 @@ public class RollDice extends ConsoleProgram {
         } while (amountOfSides <= 0);
     }
 
-
+    // Calculates and tells the winner.
     private void calculateWinner() {
         if (playerOnePoints > playerTwoPoints) {
             println("Player one won! He gained " + playerOnePoints + " points!");
@@ -103,6 +111,7 @@ public class RollDice extends ConsoleProgram {
         }
     }
 
+    // Gives point to the player who got bigger result in every round.
     private void givePoints() {
         if (result1 > result2) {
             playerOnePoints++;
@@ -114,17 +123,20 @@ public class RollDice extends ConsoleProgram {
         }
     }
 
+    // Calculates the result for second player.
     private void playerTwoRollDice() {
         result2 = rollDice();
         println("Second player got " + result2);
     }
 
+    // Calculates the result for first player.
     private void playerOneRollDice() {
         result1 = rollDice();
         println("First player got " + result1);
 
     }
 
+    // The method which rolls the dice and gets results.
     private int rollDice() {
         int result = 0;
         for (int i = 1; i <= amountOfDice; i++) {
