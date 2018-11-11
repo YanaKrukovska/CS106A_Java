@@ -3,6 +3,10 @@ import acm.program.ConsoleProgram;
 import acm.util.RandomGenerator;
 import java.awt.*;
 
+/* Task: create a game where user has to guess a random number chosen by computer.
+Made by: Yana Krukovska
+GuessTheNumber.java
+*/
 
 public class GuessTheNumber extends ConsoleProgram {
 
@@ -25,6 +29,7 @@ public class GuessTheNumber extends ConsoleProgram {
 
     }
 
+    // Method which is used while user is trying to guess the number.
     private void userTriesToGuessNumber(int randomNumber) {
         int userGuess;
         int amountOfAttempts = 0;
@@ -42,6 +47,7 @@ public class GuessTheNumber extends ConsoleProgram {
         println("Correct! It is " + randomNumber + "! It took user " + amountOfAttempts + " attempts to guess the number");
     }
 
+    // Method which checks if user's guess fits the domain.
     private int checkDomain(int userGuess) {
         do {
             if (userGuess < THE_SMALLEST_NUMBER || userGuess > THE_BIGGEST_NUMBER) {
