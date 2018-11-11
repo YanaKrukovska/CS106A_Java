@@ -1,29 +1,35 @@
+package ua.edu.ukma.ykrukovska.lab1;
+
 import acm.program.ConsoleProgram;
 
-public class ECalculator extends ConsoleProgram {
+public class CosCalculator extends ConsoleProgram {
 
     private static double X;
     private static double EP;
 
     public void run() {
 
-        EP = readDouble("EP = ");
-
+        int userInput;
         do {
-            X = readDouble("X = ");
-            if (X < 0 || X > 1) {
-                println("Wrong number! It should be 0 =< X < 1");
-            }
-        } while (!(X >= 0 && X < 1));
+        EP = readDouble("EP = ");
+            do {
+                X = readDouble("X = ");
+                if (X < -Math.PI / 4 || X > Math.PI / 4) {
+                    println("Wrong number! It should be -pi/4 =< X <= pi/4");
+                }
+            } while (!(X >= -Math.PI / 4 && X <= Math.PI / 4));
 
-        testRecurrentCalculation();
-        testRecursiveCalculation();
+            testRecurrentCalculation();
+            testRecursiveCalculation();
 
-        println("Math.exp(X) = " + Math.exp(X));
+
+            println("If you would like to continue, press any number. If you want to stop the program, press 0");
+            userInput = readInt();
+        } while (userInput != 0);
 
     }
 
-    private static void testRecurrentCalculation() {
+    private void testRecurrentCalculation() {
         double sn1;
         double sn0;
 
@@ -34,11 +40,12 @@ public class ECalculator extends ConsoleProgram {
 
             n++;
         } while (Math.abs(sn1 - sn0) > EP);
+        println("Recurrent: cos(x) = " + calculateSeriesRecurrent(n));
 
     }
 
     //test recursive calculation
-    private static void testRecursiveCalculation() {
+    private void testRecursiveCalculation() {
         double sn1;
         double sn0;
         int n = 3;
@@ -47,11 +54,11 @@ public class ECalculator extends ConsoleProgram {
             sn0 = calculateRecursive(n - 1);
             n++;
         } while (Math.abs(sn1 - sn0) > EP);
-
+        println("Recursive: cos(x) = " + calculateRecursive(n));
 
     }
 
-    private static double calculateSeriesRecurrent(int n) {
+    private double calculateSeriesRecurrent(int n) {
         double result = 0;
         for (int i = 0; i <= n; i++) {
             result = result + calculateSeriesMember(i);
@@ -60,7 +67,7 @@ public class ECalculator extends ConsoleProgram {
     }
 
     //Calculate series recursive
-    public static double calculateRecursive(int n) {
+    public double calculateRecursive(int n) {
         double result = 0;
         if (n == 0) {//recursion exit condition
             return 1;
@@ -71,12 +78,12 @@ public class ECalculator extends ConsoleProgram {
     }
 
     //calculates n-member of series
-    private static double calculateSeriesMember(int n) {
-        return Math.pow(X, n) / factorial(n);
+    private double calculateSeriesMember(int n) {
+        return Math.pow(-1, n) * Math.pow(X, 2 * n) / factorial(2 * n);
 
     }
 
-    private static long factorial(int n) {
+    private long factorial(int n) {
         if (n == 0 || n == 1) { //recursion exit condition
             return 1;
         }
