@@ -2,6 +2,11 @@ package ua.edu.ukma.ykrukovska.unit13;
 
 import acm.program.ConsoleProgram;
 
+/**
+ * TasK: make a program to solve 5 tasks
+ * Made by: Yana Krukovska
+ * CharEnumPractice.java
+ */
 public class CharEnumPractice extends ConsoleProgram {
 
     int userDecision;
@@ -9,8 +14,8 @@ public class CharEnumPractice extends ConsoleProgram {
     public void run() {
 
         int userAnswer;
-
-        this.setFont("Arial-18");
+        this.setFont("Arial-23");
+        this.setSize(600, 600);
         println("Виберіть завдання: ");
         println("1. Перевірка символьної змінної");
         println("2. Розклад рейсів літаків");
@@ -38,15 +43,16 @@ public class CharEnumPractice extends ConsoleProgram {
 
     }
 
+    // Counts the function
     private void countFunction() {
         do {
             int n;
             n = readInt("Insert value of N: ");
-            if (n < 3) {
+            if (n <= 3) {
                 do {
                     println("Number must be > 3");
                     n = readInt("Insert value of N: ");
-                } while (n < 3);
+                } while (n <= 3);
             }
 
             calculateAB(n);
@@ -63,6 +69,7 @@ public class CharEnumPractice extends ConsoleProgram {
         } while (userDecision != 0);
     }
 
+    // Finds best A and B for the function
     private void calculateAB(int n) {
         int minA = 0;
         int minB = 0;
@@ -85,12 +92,13 @@ public class CharEnumPractice extends ConsoleProgram {
         println("A = " + minA + " B = " + minB + " A + B = " + minABSum);
     }
 
+    // Shows the next day
     private void demoDays() {
         do {
             int userNumber;
 
             userNumber = readInt("Insert number of the day: ");
-            if (userNumber < 0 || userNumber > 7) {
+            if (userNumber <= 0 || userNumber > 7) {
                 do {
                     println("Number can be from 1 to 7");
                     userNumber = readInt("Insert number of the day: ");
@@ -115,6 +123,7 @@ public class CharEnumPractice extends ConsoleProgram {
 
     }
 
+    // Calculates the day for airplane schedule
     private void getAirplaneSchedule() {
 
         do {
@@ -124,7 +133,7 @@ public class CharEnumPractice extends ConsoleProgram {
                 do {
                     println("Number can be from 1 to 7");
                     userNumber = readInt("Insert number of the day: ");
-                } while (userNumber < 0 || userNumber > 7);
+                } while (userNumber <= 0 || userNumber > 7);
             }
 
             getTextPresentation(userNumber);
@@ -142,7 +151,7 @@ public class CharEnumPractice extends ConsoleProgram {
         } while (userDecision != 0);
     }
 
-
+    // Finds the next day
     public static Weekd getNextDay(Weekd currentDay) {
         if (currentDay.getDayNumber() <= 6) {
             Weekd[] days = Weekd.values();
@@ -152,22 +161,23 @@ public class CharEnumPractice extends ConsoleProgram {
         }
     }
 
-
+    // Finds day
     public static String getTextPresentation(int dayNumber) {
         return Weekd.values()[dayNumber - 1].getLabel();
 
     }
 
-
+    // Checks type of the strick
     private void checkType() {
         do {
             String insertedSymbols = readLine("Insert: ");
             char symbolToCheck = insertedSymbols.charAt(0);
 
             if (symbolToCheck >= 'A' && symbolToCheck <= 'Z') {
-                println(symbolToCheck + " belongs to latin uppercase");
+                println(symbolToCheck + " belongs to latin letters");
             } else if (symbolToCheck >= 'a' && symbolToCheck <= 'z') {
                 println(symbolToCheck + " belongs to latin lowercase");
+                println(symbolToCheck + " belongs to latin letters");
             } else if (symbolToCheck >= '0' && symbolToCheck <= '9') {
                 println(symbolToCheck + " belongs to 0-9");
             } else {
@@ -223,11 +233,13 @@ public class CharEnumPractice extends ConsoleProgram {
 
     }
 
+    // State that makes action possible
     private boolean actionDoesntExist(String divide, String multiple, String addition, String subtraction, String action) {
         return !action.equals(addition) && !action.equals(subtraction) && !action.equals(multiple)
                 && !action.equals(divide);
     }
 
+    // Calculates
     private void doCalculations(String divide, String multiple, String addition, String subtraction, double a, double b, String action) {
         double result;
         if (action.equals(addition)) {
