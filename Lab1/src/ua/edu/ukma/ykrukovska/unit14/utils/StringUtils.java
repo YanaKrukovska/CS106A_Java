@@ -19,19 +19,19 @@ public class StringUtils {
 
 
     public static String cipher(String msg, int shift) {
+
         String result = "";
-        int len = msg.length();
-        for (int x = 0; x < len; x++) {
-            char c = msg.charAt(x);
+        for (int pos = 0; pos < msg.length(); pos++) {
+            char c = msg.charAt(pos);
             if (c == ' ') {
                 result += ' ';
             } else {
 
                 c = (char) (c + shift);
                 if (c > 'z') {
-                    result += (char) (msg.charAt(x) - (26 - shift));
+                    result += (char) (msg.charAt(pos) - (26 - shift));
                 } else {
-                    result += (char) (msg.charAt(x) + shift);
+                    result += (char) (msg.charAt(pos) + shift);
                 }
             }
         }

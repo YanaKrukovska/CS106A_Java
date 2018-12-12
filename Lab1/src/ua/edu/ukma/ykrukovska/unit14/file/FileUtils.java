@@ -94,6 +94,10 @@ public class FileUtils {
             //do nothing if file names  are  not valid
             return;
         }
+        //shift must be positive
+        if (shift<=0){
+            return;
+        }
 
         try (
                 BufferedReader inputData = new BufferedReader(new FileReader(fileName)); // input data
