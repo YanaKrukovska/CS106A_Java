@@ -17,6 +17,28 @@ public class StringUtils {
         return result;
     }
 
+
+    public static String cipher(String msg, int shift) {
+        String result = "";
+        int len = msg.length();
+        for (int x = 0; x < len; x++) {
+            char c = msg.charAt(x);
+            if (c == ' ') {
+                result += ' ';
+            } else {
+
+                c = (char) (c + shift);
+                if (c > 'z') {
+                    result += (char) (msg.charAt(x) - (26 - shift));
+                } else {
+                    result += (char) (msg.charAt(x) + shift);
+                }
+            }
+        }
+
+        return result;
+    }
+
     private static int positionOfSubstring(String originalStr, String editedStr) {
 
         if (!isParamsValid(originalStr, editedStr)) {

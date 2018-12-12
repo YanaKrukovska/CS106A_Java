@@ -40,7 +40,7 @@ public class FileUtils {
 
         try (
                 BufferedReader inputData = new BufferedReader(new FileReader(fileName)); // input data
-                PrintWriter outputData = new PrintWriter(fileName + ".bak")//output data
+                PrintWriter outputData = new PrintWriter(fileName.replaceAll(".txt", ".bak"))//output data
         ) {
 
             String line = inputData.readLine();
@@ -87,4 +87,31 @@ public class FileUtils {
             //something wrong happened
         }
     }
+
+    public static void cipherFile(String fileName, int shift, String processedFileName) {
+        //check file names
+        if (fileName == null || fileName.isEmpty() || processedFileName == null || processedFileName.isEmpty()) {
+            //do nothing if file names  are  not valid
+            return;
+        }
+
+        try (
+                BufferedReader inputData = new BufferedReader(new FileReader(fileName)); // input data
+                PrintWriter encryptedData = new PrintWriter(processedFileName);//output ciphered/deciphered data
+        ) {
+
+            String line = inputData.readLine();
+            while (line != null) {
+                //add  ciphered/deciphered string into output file
+                encryptedData.println(StringUtils.cipher(line, shift));
+
+                line = inputData.readLine();
+            }
+
+        } catch (Exception e) {
+            //something wrong happened
+        }
+    }
+
+
 }
