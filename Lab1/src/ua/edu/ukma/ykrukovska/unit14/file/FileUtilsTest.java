@@ -12,4 +12,10 @@ public class FileUtilsTest {
         FileUtils.replaceInFile(fileName, "are", "are not");
 
     }
+
+    @Test
+    public void createFileBackup() {
+        String fileName = "e://IDAE Projects//CS106A_Java//Lab1//resources//input.txt";
+        FileUtils.createFileBackup(fileName);
+    }
 }
