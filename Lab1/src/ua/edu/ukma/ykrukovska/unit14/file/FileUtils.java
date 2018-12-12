@@ -55,4 +55,36 @@ public class FileUtils {
             //something wrong happened
         }
     }
+
+    public static void splitFile(String fileName) {
+        //check file name
+        if (fileName == null || fileName.isEmpty()) {
+            //do nothing if file name is  not valid
+            return;
+        }
+
+        try (
+                BufferedReader inputData = new BufferedReader(new FileReader(fileName)); // input data
+                PrintWriter outputOddData = new PrintWriter(fileName.replaceAll(".txt", "") + "_odd.txt");//output odd data
+                PrintWriter outputEvenData = new PrintWriter(fileName.replaceAll(".txt", "") + "_even.txt")//output even data
+
+        ) {
+
+            String line = inputData.readLine();
+            int lineCounter = 1;
+            while (line != null) {
+                //add  string into output file
+                if (lineCounter % 2 == 0) {
+                    outputEvenData.println(line);
+                } else {
+                    outputOddData.println(line);
+                }
+                line = inputData.readLine();
+                lineCounter++;
+            }
+
+        } catch (Exception e) {
+            //something wrong happened
+        }
+    }
 }
