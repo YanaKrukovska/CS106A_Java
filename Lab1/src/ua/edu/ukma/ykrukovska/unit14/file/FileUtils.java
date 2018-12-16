@@ -5,6 +5,7 @@ import ua.edu.ukma.ykrukovska.unit14.utils.StringUtils;
 import java.io.*;
 
 public class FileUtils {
+    public static final String WORKING_FOLDER = "C:\\IdeaProjects\\CS106A_Java\\Lab1\\src\\ua\\ua\\edu\\ukma\\ykrukovska\\uni14\\files\\";
 
     public static void replaceInFile(String fileName, String find, String replace) {
         //check params
@@ -15,7 +16,7 @@ public class FileUtils {
 
         try (
                 BufferedReader inputData = new BufferedReader(new FileReader(fileName)); // input data
-                PrintWriter outputData = new PrintWriter(fileName)//output data
+                PrintWriter outputData = new PrintWriter(fileName + ".tmp")//output data
         ) {
 
             String line = inputData.readLine();
@@ -29,6 +30,11 @@ public class FileUtils {
         } catch (Exception e) {
             //something wrong happened
         }
+        File outputData = new File(fileName + ".tmp");
+        File oldFile = new File(fileName);
+        oldFile.delete();
+        outputData.renameTo(oldFile);
+
     }
 
     public static void createFileBackup(String fileName) {
@@ -41,7 +47,7 @@ public class FileUtils {
         try (
                 BufferedReader inputData = new BufferedReader(new FileReader(fileName)); // input data
                 PrintWriter outputData = new PrintWriter(fileName.replaceAll(".txt", ".bak"))//output data
-        ) {
+        ){
 
             String line = inputData.readLine();
 
@@ -65,12 +71,15 @@ public class FileUtils {
 
         try (
                 BufferedReader inputData = new BufferedReader(new FileReader(fileName)); // input data
-                PrintWriter outputOddData = new PrintWriter(fileName.replaceAll(".txt", "") + "_odd.txt");//output odd data
-                PrintWriter outputEvenData = new PrintWriter(fileName.replaceAll(".txt", "") + "_even.txt")//output even data
+                PrintWriter outputOddData = new PrintWriter(fileName.replaceAll(".txt",   "_odd.txt"));//output odd data
+                PrintWriter outputEvenData = new PrintWriter(fileName.replaceAll(".txt", "_even.txt"));//output even data
 
         ) {
 
             String line = inputData.readLine();
+
+
+
             int lineCounter = 1;
             while (line != null) {
                 //add  string into output file
@@ -95,7 +104,7 @@ public class FileUtils {
             return;
         }
         //shift must be positive
-        if (shift<=0){
+        if (shift <= 0) {
             return;
         }
 
